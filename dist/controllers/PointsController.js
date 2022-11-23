@@ -18,7 +18,7 @@ class PointsController {
             .distinct()
             .select('points.*');
         const serializedPoints = points.map(point => {
-            return Object.assign(Object.assign({}, point), { image_url: `http://192.168.56.1:3333/uploads/${point.image}` });
+            return Object.assign(Object.assign({}, point), { image_url: `https://server-production-454b.up.railway.app/uploads/${point.image}` });
         });
         return response.json(serializedPoints);
     }
@@ -30,7 +30,7 @@ class PointsController {
                 name: pintor.name,
                 image: pintor.image,
                 city: pintor.city,
-                image_url: `http://192.168.56.1:3333/uploads/${pintor.image}`,
+                image_url: `https://server-production-454b.up.railway.app/uploads/${pintor.image}`,
                 ativo: pintor.ativo
             };
         });
@@ -54,7 +54,7 @@ class PointsController {
         if (!point) {
             return response.status(400).json({ message: 'Pintores nao encontrados.' });
         }
-        const serializedPoint = Object.assign(Object.assign({}, point), { image_url: `http://192.168.56.1:3333/uploads/${point.image}` });
+        const serializedPoint = Object.assign(Object.assign({}, point), { image_url: `https://server-production-454b.up.railway.app/uploads/${point.image}` });
         const items = await (0, connection_1.default)('items')
             .join('point_items', 'items.id', '=', 'point_items.item_id')
             .where('point_items.point_id', id)
